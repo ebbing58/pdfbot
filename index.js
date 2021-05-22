@@ -28,10 +28,12 @@ function initializeLiff(myLiffId) {
       // キャンセルボタン押下時の処理
       document.getElementById("cancelBtn").onclick = () => {
         liff
-          .sendMessages({
-            type: "text",
-            text: liff.getIDToken(),
-          })
+          .sendMessages([
+            {
+              type: "text",
+              text: liff.getIDToken(),
+            },
+          ])
           .then(() => {
             liff.closeWindow();
           });
@@ -120,10 +122,12 @@ function sendFromOfficialAccount() {
  */
 function sendByUser() {
   return liff
-    .sendMessages({
-      type: "text",
-      text: "gmailのアドレスを送信",
-    })
+    .sendMessages([
+      {
+        type: "text",
+        text: "gmailのアドレスを送信",
+      },
+    ])
     .then(() => {
       return "success";
     })
