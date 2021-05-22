@@ -92,6 +92,7 @@ function sendMessage() {
  * LINE公式アカウントからの送信
  */
 function sendFromOfficialAccount() {
+  alert("2");
   let url =
     "https://asia-northeast2-kintonetoline.cloudfunctions.net/gmailRegistConfirmation";
 
