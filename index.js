@@ -120,12 +120,18 @@ function createFlexMessage(gmailAddress) {
         layout: "horizontal",
         contents: [
           {
-            type: "button",
-            action: {
-              type: "message",
-              label: "Yes",
-              text: "Yes",
-            },
+            type: "text",
+            text: "Hello, World!",
+            size: "xl",
+            weight: "bold",
+            color: "#0000ff",
+
+            // type: "button",
+            // action: {
+            //   type: "message",
+            //   label: "Yes",
+            //   text: "Yes",
+            // },
             // action: {
             //   type: "postback",
             //   label: "登録する",
