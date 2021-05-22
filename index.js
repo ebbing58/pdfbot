@@ -99,25 +99,28 @@ function sendFromOfficialAccount() {
   // メッセージを作成
   const gmailAddress =
     document.getElementById("gmailAddress").value + "@gmail.com";
-  const data = { IDToken: liff.getIDToken(), gmailAddress: gmailAddress };
+  const body = JSON.stringify({
+    IDToken: liff.getIDToken(),
+    gmailAddress: gmailAddress,
+  });
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  const method = "POST";
 
   // 実行
-  return fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then((response) => {
-    if (!response.ok) {
-      return Promise.reject(
-        new Error(`${response.status}: ${response.statusText}`)
-      );
-    } else {
-      // JSONオブジェクトで解決されるPromiseを返す
-      return response.json();
+  return fetch(url, { method: method, headers: headers, body: body }).then(
+    (response) => {
+      if (!response.ok) {
+        return Promise.reject(
+          new Error(`${response.status}: ${response.statusText}`)
+        );
+      } else {
+        // JSONオブジェクトで解決されるPromiseを返す
+        return response.json();
+      }
     }
-  });
+  );
 }
 
 /**
