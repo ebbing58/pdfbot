@@ -58,102 +58,69 @@ function initializeApp() {
 }
 
 /**
- * LINEトークルーム上にユーザ発言のメッセ―ジを返す
+ * LINEトークルーム上にメッセ―ジを送信
  */
 function sendMessage() {
-  // メッセージを作成
-  const gmailAddress =
-    document.getElementById("gmailAddress").value + "@gmail.com";
-  const flexMessage = createFlexMessage(gmailAddress);
-
-  // メッセージを送信
-  liff
-    .sendMessages([flexMessage])
+  // LINE公式アカウントからの送信
+  sendFromOfficialAccount()
+    // トークルームにユーザメッセージを表示
+    .then((response) => sendByUser())
+    // 正常終了すれば閉じる
     .then(() => {
-      console.log("message sent");
-      alert("message sent");
-    })
-    .catch((err) => {
-      console.log("error", err);
-      alert(err);
-    })
-    .finally(() => {
       liff.closeWindow();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      let msg = document.createElement("DIV");
+      msg.setAttribute("role", "alert");
+      msg.classList.value = "alert alert-danger";
+      msg.innerText = "エラーが発生";
+      document.getElementById("msgArea").appendChild(msg);
     });
 }
 
-function createFlexMessage(gmailAddress) {
-  alert("ver1");
+/**
+ * LINE公式アカウントからの送信
+ */
+function sendFromOfficialAccount() {
+  let url =
+    "https://asia-northeast2-kintonetoline.cloudfunctions.net/gmailRegistConfirmation";
 
-  const bodyText = `${gmailAddress}を登録してよろしいですか？`;
+  // メッセージを作成
+  const gmailAddress =
+    document.getElementById("gmailAddress").value + "@gmail.com";
+  const data = { IDToken: liff.getIDToken(), gmailAddress: gmailAddress };
 
-  let flexMessage = {
-    type: "flex",
-    altText: "this is a flex message",
-    contents: {
-      type: "bubble",
-      header: {
-        type: "box",
-        layout: "vertical",
-        contents: [
-          {
-            type: "text",
-            text: "登録確認",
-          },
-        ],
-      },
-      // TODO: gmailのアイコンを表示したら素敵
-      // hero: {
-      //   type: "image",
-      //   url: "https://example.com/flex/images/image.jpg",
-      // },
-      body: {
-        type: "box",
-        layout: "vertical",
-        contents: [
-          {
-            type: "text",
-            text: bodyText,
-          },
-        ],
-      },
-      footer: {
-        type: "box",
-        layout: "vertical",
-        contents: [
-          {
-            // type: "text",
-            // text: bodyText,
-            type: "button",
-            action: {
-              type: "message",
-              label: "Yes",
-              text: "Yes",
-            },
-            // action: {
-            //   type: "postback",
-            //   label: "登録する",
-            //   data: "action=regist&confirm=true",
-            //   displaytext: "登録する",
-            // },
-            // style: "primary",
-            // color: "#0000ff",
-          },
-          // {
-          //   type: "button",
-          //   action: {
-          //     type: "postback",
-          //     label: "キャンセル",
-          //     data: "action=regist&confirm=false",
-          //     displaytext: "キャンセル",
-          //   },
-          //   // style: "secondary",
-          //   // color: "#0000ff",
-          // },
-        ],
-      },
-    },
-  };
+  // 実行
+  return fetch(url, {
+    method: "POST",
+    "Content-Type": "application/json",
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (!response.ok) {
+      return Promise.reject(
+        new Error(`${response.status}: ${response.statusText}`)
+      );
+    } else {
+      // JSONオブジェクトで解決されるPromiseを返す
+      return response.json();
+    }
+  });
+}
 
-  return flexMessage;
+/**
+ * トークルームにユーザメッセージを表示
+ */
+function sendByUser() {
+  return liff
+    .sendMessages({
+      type: "text",
+      text: "gmailのアドレスを送信",
+    })
+    .then(() => {
+      return "success";
+    })
+    .catch((err) => {
+      return err;
+    });
 }
