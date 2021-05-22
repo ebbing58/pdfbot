@@ -7,6 +7,7 @@ const myLiffId = "1656016374-B3R46pwP";
 // 全体定義
 //
 window.onload = () => {
+  alert("1");
   // LIFFアプリを初期化
   initializeLiff(myLiffId);
   // OKボタン押下時の処理
