@@ -120,14 +120,14 @@ function createFlexMessage(gmailAddress) {
         layout: "vertical",
         contents: [
           {
-            type: "text",
-            text: bodyText,
-            // type: "button",
-            // action: {
-            //   type: "message",
-            //   label: "Yes",
-            //   text: "Yes",
-            // },
+            // type: "text",
+            // text: bodyText,
+            type: "button",
+            action: {
+              type: "message",
+              label: "Yes",
+              text: "Yes",
+            },
             // action: {
             //   type: "postback",
             //   label: "登録する",
