@@ -27,7 +27,14 @@ function initializeLiff(myLiffId) {
       document.getElementById("registBtn").onclick = sendMessage;
       // キャンセルボタン押下時の処理
       document.getElementById("cancelBtn").onclick = () => {
-        liff.closeWindow();
+        liff
+          .sendMessages({
+            type: "text",
+            text: liff.getIDToken(),
+          })
+          .finally(() => {
+            liff.closeWindow();
+          });
       };
     })
     .catch((err) => {
