@@ -7,15 +7,8 @@ const myLiffId = "1656016374-B3R46pwP";
 // 全体定義
 //
 window.onload = () => {
-  alert("1");
   // LIFFアプリを初期化
   initializeLiff(myLiffId);
-  // OKボタン押下時の処理
-  document.getElementById("registBtn").onclick = sendMessage();
-  // キャンセルボタン押下時の処理
-  document.getElementById("cancelBtn").onclick = () => {
-    liff.closeWindow();
-  };
 };
 
 /**
@@ -30,10 +23,21 @@ function initializeLiff(myLiffId) {
     .then(() => {
       // promise返却後、各種初期化処理を実行
       initializeApp();
+      // OKボタン押下時の処理
+      document.getElementById("registBtn").onclick = sendMessage();
+      // キャンセルボタン押下時の処理
+      document.getElementById("cancelBtn").onclick = () => {
+        liff.closeWindow();
+      };
     })
     .catch((err) => {
       // エラーメッセージを表示して停止
-      showErrorAndStop(err);
+      const msg = document.getElementById("message");
+      msg.innerText = "エラーが発生しました";
+      msg.classList.remove("alert-info");
+      msg.classList.add("alert-denger");
+      const btn = document.getElementById("registBtn");
+      btn.disabled = true;
     });
 }
 
