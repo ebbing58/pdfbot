@@ -24,7 +24,7 @@ function initializeLiff(myLiffId) {
       // promise返却後、各種初期化処理を実行
       initializeApp();
       // OKボタン押下時の処理
-      document.getElementById("registBtn").onclick = sendMessage();
+      document.getElementById("registBtn").onclick = sendMessage;
       // キャンセルボタン押下時の処理
       document.getElementById("cancelBtn").onclick = () => {
         liff.closeWindow();
@@ -115,34 +115,34 @@ function createFlexMessage(gmailAddress) {
           },
         ],
       },
-      // footer: {
-      //   type: "box",
-      //   layout: "horizontal",
-      //   contents: [
-      //     {
-      //       type: "button",
-      //       action: {
-      //         type: "postback",
-      //         label: "登録する",
-      //         data: "action=regist&confirm=true",
-      //         text: "登録する",
-      //       },
-      //       style: "primary",
-      //       color: "#0000ff",
-      //     },
-      //     {
-      //       type: "button",
-      //       action: {
-      //         type: "postback",
-      //         label: "キャンセル",
-      //         data: "action=regist&confirm=false",
-      //         text: "キャンセル",
-      //       },
-      //       style: "secondary",
-      //       color: "#0000ff",
-      //     },
-      //   ],
-      // },
+      footer: {
+        type: "box",
+        layout: "horizontal",
+        contents: [
+          {
+            type: "button",
+            action: {
+              type: "postback",
+              label: "登録する",
+              data: "action=regist&confirm=true",
+              text: "登録する",
+            },
+            style: "primary",
+            color: "#0000ff",
+          },
+          {
+            type: "button",
+            action: {
+              type: "postback",
+              label: "キャンセル",
+              data: "action=regist&confirm=false",
+              text: "キャンセル",
+            },
+            style: "secondary",
+            color: "#0000ff",
+          },
+        ],
+      },
     },
   };
 
