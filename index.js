@@ -29,7 +29,7 @@
       })
       .then(() => {
         // promise返却後、各種初期化処理を実行
-        initializeApp();
+        //      initializeApp();
       })
       .catch((err) => {
         // エラーメッセージを表示して停止
