@@ -2,7 +2,7 @@
   "use strict";
 
   //LINE Developers上で作成したLINEloginチャネルのLIFFID
-  const myLiffId = "1655946037-9g1Z7xZW";
+  const myLiffId = "1656016374-B3R46pwP";
 
   //
   // 全体定義
