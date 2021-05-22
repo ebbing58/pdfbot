@@ -117,15 +117,11 @@ function createFlexMessage(gmailAddress) {
       },
       footer: {
         type: "box",
-        layout: "horizontal",
+        layout: "vertical",
         contents: [
           {
             type: "text",
-            text: "Hello, World!",
-            size: "xl",
-            weight: "bold",
-            color: "#0000ff",
-
+            text: bodyText,
             // type: "button",
             // action: {
             //   type: "message",
