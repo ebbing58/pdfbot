@@ -67,9 +67,11 @@
       .sendMessages([flexMessage])
       .then(() => {
         console.log("message sent");
+        alert("message sent");
       })
       .catch((err) => {
         console.log("error", err);
+        alert(err);
       })
       .finally(() => {
         liff.closeWindow();
