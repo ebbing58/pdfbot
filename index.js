@@ -103,7 +103,9 @@ function sendFromOfficialAccount() {
   // 実行
   return fetch(url, {
     method: "POST",
-    "Content-Type": "application/json",
+    header: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(data),
   }).then((response) => {
     if (!response.ok) {
