@@ -122,11 +122,16 @@ function createFlexMessage(gmailAddress) {
           {
             type: "button",
             action: {
-              type: "postback",
-              label: "登録する",
-              data: "action=regist&confirm=true",
-              displaytext: "登録する",
+              type: "message",
+              label: "Yes",
+              text: "Yes",
             },
+            // action: {
+            //   type: "postback",
+            //   label: "登録する",
+            //   data: "action=regist&confirm=true",
+            //   displaytext: "登録する",
+            // },
             // style: "primary",
             // color: "#0000ff",
           },
