@@ -32,7 +32,7 @@ function initializeLiff(myLiffId) {
             type: "text",
             text: liff.getIDToken(),
           })
-          .finally(() => {
+          .then(() => {
             liff.closeWindow();
           });
       };
