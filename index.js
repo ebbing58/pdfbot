@@ -83,6 +83,8 @@ function sendMessage() {
 }
 
 function createFlexMessage(gmailAddress) {
+  alert("ver1");
+
   const bodyText = `${gmailAddress}を登録してよろしいですか？`;
 
   let flexMessage = {
