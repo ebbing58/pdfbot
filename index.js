@@ -125,7 +125,6 @@ function sendFromOfficialAccount() {
           )
         );
       } else {
-        alert("oa success");
         return response.json();
       }
     }
