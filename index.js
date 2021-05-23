@@ -80,13 +80,7 @@ function sendMessage() {
       liff.closeWindow();
     })
     .catch((error) => {
-      alert("error");
-      console.error("Error:", error);
-      let msg = document.createElement("DIV");
-      msg.setAttribute("role", "alert");
-      msg.classList.value = "alert alert-danger";
-      msg.innerText = "エラーが発生";
-      document.getElementById("msgArea").appendChild(msg);
+      alert("Error:" + JSON.stringify(error));
     });
 }
 
@@ -132,6 +126,7 @@ function sendFromOfficialAccount() {
   return fetch(url, { method: method, headers: headers, body: body }).then(
     (response) => {
       if (!response.ok) {
+        alert(JSON.stringify(response));
         return Promise.reject(
           new Error(`${response.status}: ${response.statusText}`)
         );
