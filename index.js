@@ -73,9 +73,7 @@ function sendMessage() {
   // トークルームにユーザメッセージを表示
   sendByUser()
     // LINE公式アカウントからの送信
-    .then((response) => {
-      return sendFromOfficialAccount();
-    })
+    .then(() => sendFromOfficialAccount())
     // 正常終了すれば閉じる
     .then(() => {
       alert("close");
@@ -90,7 +88,7 @@ function sendMessage() {
  * トークルームにユーザメッセージを表示
  */
 function sendByUser() {
-  return liff
+  liff
     .sendMessages([
       {
         type: "text",
@@ -98,6 +96,7 @@ function sendByUser() {
       },
     ])
     .then(() => {
+      alert("sendsuccess");
       return "success";
     })
     .catch((err) => {
@@ -125,7 +124,7 @@ function sendFromOfficialAccount() {
   const method = "POST";
 
   // 実行
-  return fetch(url, { method: method, headers: headers, body: body }).then(
+  fetch(url, { method: method, headers: headers, body: body }).then(
     (response) => {
       if (!response.ok) {
         alert(JSON.stringify(response));
