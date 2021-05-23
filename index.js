@@ -76,6 +76,7 @@ function sendMessage() {
     .then((response) => sendFromOfficialAccount())
     // 正常終了すれば閉じる
     .then(() => {
+      alert("close");
       liff.closeWindow();
     })
     .catch((error) => {
@@ -134,7 +135,6 @@ function sendFromOfficialAccount() {
           new Error(`${response.status}: ${response.statusText}`)
         );
       } else {
-        // JSONオブジェクトで解決されるPromiseを返す
         return response.json();
       }
     }
