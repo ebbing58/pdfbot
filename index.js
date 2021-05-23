@@ -73,7 +73,7 @@ function sendMessage() {
   // トークルームにユーザメッセージを表示
   sendByUser()
     // LINE公式アカウントからの送信
-    .then(sendFromOfficialAccount)
+    .then(sendFromOfficialAccount())
     // 正常終了すれば閉じる
     .catch((error) => {
       alert("Error:" + JSON.stringify(error));
