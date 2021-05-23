@@ -75,11 +75,11 @@ function sendMessage() {
     // LINE公式アカウントからの送信
     .then(() => sendFromOfficialAccount())
     // 正常終了すれば閉じる
-    .then(() => {
-      liff.closeWindow();
-    })
     .catch((error) => {
       alert("Error:" + JSON.stringify(error));
+    })
+    .finally(() => {
+      liff.closeWindow();
     });
 }
 
