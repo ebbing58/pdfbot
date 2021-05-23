@@ -79,6 +79,7 @@ function sendMessage() {
       alert("Error:" + JSON.stringify(error));
     })
     .finally(() => {
+      alert("a");
       liff.closeWindow();
     });
 }
