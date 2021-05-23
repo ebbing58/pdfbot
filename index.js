@@ -76,7 +76,6 @@ function sendMessage() {
     .then(() => sendFromOfficialAccount())
     // 正常終了すれば閉じる
     .then(() => {
-      alert("close");
       liff.closeWindow();
     })
     .catch((error) => {
@@ -94,14 +93,6 @@ function sendByUser() {
       text: "gmailのアドレスを送信",
     },
   ]);
-  // .then(() => {
-  //   alert("send success");
-  //   return "success";
-  // })
-  // .catch((err) => {
-  //   alert("send error");
-  //   return err;
-  // });
 }
 
 /**
@@ -124,12 +115,14 @@ function sendFromOfficialAccount() {
   const method = "POST";
 
   // 実行
-  fetch(url, { method: method, headers: headers, body: body }).then(
+  return fetch(url, { method: method, headers: headers, body: body }).then(
     (response) => {
       if (!response.ok) {
-        alert("oa error" + JSON.stringify(response));
         return Promise.reject(
-          new Error(`${response.status}: ${response.statusText}`)
+          new Error(
+            `${response.status}: ${response.statusText}` +
+              JSON.stringify(response)
+          )
         );
       } else {
         alert("oa success");
