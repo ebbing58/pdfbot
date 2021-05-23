@@ -80,6 +80,7 @@ function sendMessage() {
       liff.closeWindow();
     })
     .catch((error) => {
+      alert("error");
       console.error("Error:", error);
       let msg = document.createElement("DIV");
       msg.setAttribute("role", "alert");
