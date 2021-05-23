@@ -88,21 +88,20 @@ function sendMessage() {
  * トークルームにユーザメッセージを表示
  */
 function sendByUser() {
-  return liff
-    .sendMessages([
-      {
-        type: "text",
-        text: "gmailのアドレスを送信",
-      },
-    ])
-    .then(() => {
-      alert("send success");
-      return "success";
-    })
-    .catch((err) => {
-      alert("send error");
-      return err;
-    });
+  return liff.sendMessages([
+    {
+      type: "text",
+      text: "gmailのアドレスを送信",
+    },
+  ]);
+  // .then(() => {
+  //   alert("send success");
+  //   return "success";
+  // })
+  // .catch((err) => {
+  //   alert("send error");
+  //   return err;
+  // });
 }
 
 /**
