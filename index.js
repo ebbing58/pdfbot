@@ -117,6 +117,7 @@ function sendFromOfficialAccount() {
   // 実行
   return fetch(url, { method: method, headers: headers, body: body }).then(
     (response) => {
+      alert(response.ok);
       if (!response.ok) {
         return Promise.reject(
           new Error(
