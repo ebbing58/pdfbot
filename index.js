@@ -88,7 +88,7 @@ function sendMessage() {
  * トークルームにユーザメッセージを表示
  */
 function sendByUser() {
-  liff
+  return liff
     .sendMessages([
       {
         type: "text",
@@ -96,10 +96,11 @@ function sendByUser() {
       },
     ])
     .then(() => {
-      alert("sendsuccess");
+      alert("send success");
       return "success";
     })
     .catch((err) => {
+      alert("send error");
       return err;
     });
 }
@@ -127,11 +128,12 @@ function sendFromOfficialAccount() {
   fetch(url, { method: method, headers: headers, body: body }).then(
     (response) => {
       if (!response.ok) {
-        alert(JSON.stringify(response));
+        alert("oa error" + JSON.stringify(response));
         return Promise.reject(
           new Error(`${response.status}: ${response.statusText}`)
         );
       } else {
+        alert("oa success");
         return response.json();
       }
     }
