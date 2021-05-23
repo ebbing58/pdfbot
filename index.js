@@ -73,7 +73,9 @@ function sendMessage() {
   // トークルームにユーザメッセージを表示
   sendByUser()
     // LINE公式アカウントからの送信
-    .then((response) => sendFromOfficialAccount())
+    .then((response) => {
+      return sendFromOfficialAccount();
+    })
     // 正常終了すれば閉じる
     .then(() => {
       alert("close");
