@@ -44,7 +44,7 @@ function initializeLiff(myLiffId) {
       const msg = document.getElementById("message");
       msg.innerText = "エラーが発生しました";
       msg.classList.remove("alert-info");
-      msg.classList.add("alert-denger");
+      msg.classList.add("alert-danger");
       const btn = document.getElementById("registBtn");
       btn.disabled = true;
     });
@@ -60,7 +60,7 @@ function initializeApp() {
     const msg = document.getElementById("message");
     msg.innerText = "LINEアプリから操作する必要があります。";
     msg.classList.remove("alert-info");
-    msg.classList.add("alert-denger");
+    msg.classList.add("alert-danger");
     const btn = document.getElementById("registBtn");
     btn.disabled = true;
   }
@@ -70,10 +70,10 @@ function initializeApp() {
  * LINEトークルーム上にメッセ―ジを送信
  */
 function sendMessage() {
-  // LINE公式アカウントからの送信
-  sendFromOfficialAccount()
-    // トークルームにユーザメッセージを表示
-    .then((response) => sendByUser())
+  // トークルームにユーザメッセージを表示
+  sendByUser()
+    // LINE公式アカウントからの送信
+    .then((response) => sendFromOfficialAccount())
     // 正常終了すれば閉じる
     .then(() => {
       liff.closeWindow();
@@ -89,10 +89,28 @@ function sendMessage() {
 }
 
 /**
+ * トークルームにユーザメッセージを表示
+ */
+function sendByUser() {
+  return liff
+    .sendMessages([
+      {
+        type: "text",
+        text: "gmailのアドレスを送信",
+      },
+    ])
+    .then(() => {
+      return "success";
+    })
+    .catch((err) => {
+      return err;
+    });
+}
+
+/**
  * LINE公式アカウントからの送信
  */
 function sendFromOfficialAccount() {
-  alert("3");
   let url =
     "https://asia-northeast2-kintonetoline.cloudfunctions.net/gmailRegistConfirmation";
 
@@ -121,23 +139,4 @@ function sendFromOfficialAccount() {
       }
     }
   );
-}
-
-/**
- * トークルームにユーザメッセージを表示
- */
-function sendByUser() {
-  return liff
-    .sendMessages([
-      {
-        type: "text",
-        text: "gmailのアドレスを送信",
-      },
-    ])
-    .then(() => {
-      return "success";
-    })
-    .catch((err) => {
-      return err;
-    });
 }
